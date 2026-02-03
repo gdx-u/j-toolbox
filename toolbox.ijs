@@ -1,3 +1,5 @@
+rem =: 4 :'(y{.x),(x}.~>:y)'
+is_int =: 3 :'y=<.y'
 is_ascending =: 3 :'*/(_,~}.t)>t'
 fib =: 3 :'{:"1+/\@|.^:(i.y) 0 1'
 tot =: 3 :'y * */ (1 - 1 % ~. q: y)'
@@ -7,6 +9,15 @@ sel =. 26 > a i."(1 0) y
 idx =. (a i."(1 0) y) + sel * 26
 idx { a
 )
+
+NB. FAST PERMUTE!!
+from =: 4 :0
+if. x=0 do. >a:
+elseif. x=1 do. y
+else. ,/ y ,."(0, <./ (2, <:x)) (<:x) from"(0 1) (y rem"(1 0) i.#y) end.
+)
+
+permute_fast =: 3 :'((#y) from i.#y) { (/: y) { y'
 
 NB. Find all lexicographical permutations of a string
 NB. Called with "string {~ lex layer^:(<:n) i.n"
@@ -43,7 +54,13 @@ needed =. x - #y
 ((<.needed%2)$' '),y,((<.(>:needed)%2)$' ')
 )
 
-totable =: 4 :0
-headings =. x
-data =. y
-ml =. >./ #"1 headings
+factors =: 3 :'((is_int@{.)"1 N) # N =. (y%n) ,. n =. >:i.<.%:y'
+
+table =: 3 :0
+f =. factors #y
+ba=.{.{:f
+bb=.{:{:f
+(ba,bb)$y
+)
+
+NB. ==================================================
