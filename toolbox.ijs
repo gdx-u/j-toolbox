@@ -26,6 +26,11 @@ if. (/:y)-:i.#y do. y {~ lex layer^:(<:#y) i.#y
 else. permute (/:y){y end.
 )
 
+prod =: 3 :0
+if. (/:y)-:i.#y do. y {~ layer^:(<:#y) i.#y
+else. prod (/:y){y end.
+)
+
 lex =: 3 :0
 func =. 3 :'(#y)=# ~. y'
 (func"1 y) # y
